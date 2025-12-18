@@ -1,0 +1,21 @@
+{
+  "name": "block-temp-mail",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsup && cp src/temp-mail-domains.txt dist/temp-mail-domains.txt",
+    "start": "tsc-watch -p ./tsconfig.json --outDir dist --onsuccess \"node dist/index.js\" --noClear"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "tsc-watch": "^7.2.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
+}
