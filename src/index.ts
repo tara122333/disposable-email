@@ -5,7 +5,7 @@ async function readMyFile(filePath: string): Promise<string[]> {
   try {
     const domain: string[] = [];
     const data = await fs.readFile(filePath, 'utf-8');
-    data.split('\n').forEach(line => {
+    data?.split('\n').forEach(line => {
       const trimmedLine = line.trim();
       if (trimmedLine) {
         domain.push(trimmedLine);
@@ -52,8 +52,6 @@ const checkTempMail = async (email: string): Promise<boolean> => {
   const apiResponse = await fetch(`https://disposable.debounce.io/?email=${email}`);
   const apiData = await apiResponse.json();
 
-  console.log("API Response:", apiData);
-  
   if (apiData.disposable === "true") {
     extendContentMyFile(path.join(__dirname, 'temp-mail-domains.txt'), domain);
     return true;
