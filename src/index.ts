@@ -1,8 +1,6 @@
 import * as fs from 'fs/promises';
 import path from 'path';
-import express from 'express';
-
-const app = express();
+import { CheckTempMailResponse } from './types';
 
 const readMyFile = async (filePath: string): Promise<string[]> => {
   try {
@@ -57,36 +55,33 @@ const checkTempMail = async (email: string): Promise<boolean> => {
   return isTempMail;
 };
 
-app.get('/', async (req, res) => {
-  const { email } = req.query as { email: string };
-
+const checkTempMailValidation = async (email: string): Promise<CheckTempMailResponse> => {
   const isValidEmail = checkValidEmail(email);
 
   if (!isValidEmail) {
-    return res.status(200).json({
+    return {
       isTemporary: false,
       isValid: false,
       message: 'Invalid email.',
-    })
+    };
   }
 
   const checked = await checkTempMail(email);
 
   if (checked) {
-    return res.status(200).json({
+    return {
       isTemporary: true,
       isValid: true,
       message: 'Temporary email detected.',
-    })
+    }
   }
 
-  res.status(200).json({
+  return {
     isTemporary: false,
     isValid: true,
     message: 'Valid email.',
-  });
-});
+  };
+};
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+export { checkTempMailValidation };
+export * from './types';
