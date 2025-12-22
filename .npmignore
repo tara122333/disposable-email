@@ -1,0 +1,10 @@
+*node_modules
+*.DS_Store
+dist
+
+.DS_Store
+
+/src
+
+tsconfig.json
+tsconfig.config.json

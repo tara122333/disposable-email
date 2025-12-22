@@ -1,7 +1,10 @@
 import * as fs from 'fs/promises';
 import path from 'path';
+import express from 'express';
 
-async function readMyFile(filePath: string): Promise<string[]> {
+const app = express();
+
+const readMyFile = async (filePath: string): Promise<string[]> => {
   try {
     const domain: string[] = [];
     const data = await fs.readFile(filePath, 'utf-8');
@@ -19,7 +22,7 @@ async function readMyFile(filePath: string): Promise<string[]> {
   }
 }
 
-async function extendContentMyFile(filePath: string, content: string) {
+const extendContentMyFile = async (filePath: string, content: string) => {
   try {
     await fs.appendFile(filePath, `\n${content}`, 'utf-8');
     console.log(`Content appended to file: ${filePath}`);
@@ -34,12 +37,6 @@ const checkValidEmail = (email: string): boolean => {
 };
 
 const checkTempMail = async (email: string): Promise<boolean> => {
-  const isValidEmail = checkValidEmail(email);
-
-  if (!isValidEmail) {
-    return true;
-  }
-
   const tempMailDomains = await readMyFile(path.join(__dirname, 'temp-mail-domains.txt'));
   
   const domain = email.split("@")[1];
@@ -60,6 +57,36 @@ const checkTempMail = async (email: string): Promise<boolean> => {
   return isTempMail;
 };
 
-checkTempMail('bolidipi@forexzig.com').then((res) => {
-  console.log("Is the temp email ", res);
-}).catch(console.error);
+app.get('/', async (req, res) => {
+  const { email } = req.query as { email: string };
+
+  const isValidEmail = checkValidEmail(email);
+
+  if (!isValidEmail) {
+    return res.status(200).json({
+      isTemporary: false,
+      isValid: false,
+      message: 'Invalid email.',
+    })
+  }
+
+  const checked = await checkTempMail(email);
+
+  if (checked) {
+    return res.status(200).json({
+      isTemporary: true,
+      isValid: true,
+      message: 'Temporary email detected.',
+    })
+  }
+
+  res.status(200).json({
+    isTemporary: false,
+    isValid: true,
+    message: 'Valid email.',
+  });
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
