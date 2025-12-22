@@ -8,11 +8,12 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tara122333/block-temp-mail.git"
+    "url": "https://github.com/tara122333/disposable-email"
   },
   "scripts": {
     "build": "tsup && cp src/temp-mail-domains.txt dist/temp-mail-domains.txt",
-    "start": "tsc-watch -p ./tsconfig.json --outDir dist --onsuccess \"node dist/index.js\" --noClear"
+    "start": "tsc-watch -p ./tsconfig.json --outDir dist --onsuccess \"node dist/index.js\" --noClear",
+    "deploy": "npm run build && npm publish --access public"
   },
   "author": "",
   "license": "ISC",
