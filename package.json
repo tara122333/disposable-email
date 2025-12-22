@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "homepage": "",
+  "homepage": "https://github.com/tara122333/disposable-email#README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/tara122333/disposable-email"
