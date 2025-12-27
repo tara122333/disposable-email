@@ -1,5 +1,9 @@
 export type VerifyEmail = {
-  isTemporary: boolean,
-  isValid: boolean,
-  message: string,
+  message: string;
+  data: {
+    isTemporary: boolean,
+    isValid: boolean,
+    message: string,
+  };
+  success: boolean;
 }
