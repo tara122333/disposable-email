@@ -6,4 +6,4 @@
 /src
 
 tsconfig.json
-tsconfig.config.json
+tsup.config.json
