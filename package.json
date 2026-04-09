@@ -1,6 +1,6 @@
 {
   "name": "block-temp-mail",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A lightweight package to detect and block disposable or temporary email addresses, helping prevent spam and fake account registrations.",
   "keywords": [
     "disposable-email",
@@ -27,7 +27,7 @@
   "scripts": {
     "build": "tsup",
     "start": "tsc-watch -p ./tsconfig.json --outDir dist --onsuccess \"node dist/index.js\" --noClear",
-    "deploy": "npm run build && npm publish --access public"
+    "deploy": "rm -rf dist && npm run build && npm publish --access public"
   },
   "author": "",
   "license": "ISC",
