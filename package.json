@@ -1,6 +1,6 @@
 {
   "name": "block-temp-mail",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A lightweight package to detect and block disposable or temporary email addresses, helping prevent spam and fake account registrations.",
   "keywords": [
     "disposable-email",
