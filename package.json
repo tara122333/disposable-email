@@ -1,7 +1,21 @@
 {
   "name": "block-temp-mail",
   "version": "1.0.4",
-  "description": "",
+  "description": "A lightweight package to detect and block disposable or temporary email addresses, helping prevent spam and fake account registrations.",
+  "keywords": [
+    "disposable-email",
+    "temporary-email",
+    "temp-mail",
+    "email-validation",
+    "email-verification",
+    "block-temp-mail",
+    "fake-email",
+    "throwaway-email",
+    "spam-prevention",
+    "email-filter",
+    "disposable-mail",
+    "email-checker"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
