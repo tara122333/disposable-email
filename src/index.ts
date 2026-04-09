@@ -27,7 +27,7 @@ const verifyEmail = async (email: string): Promise<VerifyEmail> => {
 
     const apiData = await apiResponse.json();
 
-    return apiData.data;
+    return apiData;
   } catch (error) {
     return {
       success: false,
